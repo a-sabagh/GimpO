@@ -90,15 +90,15 @@ foreach ($inputGallery_array as $filename) {
         $sitename = str_replace(".jpg", "", $sitename);
         $sitename = str_replace(".png", "", $sitename);
         if (preg_match("/\.(png)$/", $input)) {
-//            $output = "outputGallery/{$sitename}.png";  #save for png with filename
-            $output = "outputGallery/gnutec{$sitename}.png";  #save with suffix and filename
+//            $output = "outputGallery/{$sitename}.png";   #save with filename for png
+            $output = "outputGallery/gnutec{$sitename}.png";  #save with suffix and filename for png
         } else {
-//            $output = "outputGallery/{$sitename}.jpg";
-            $output = "outputGallery/gnutec{$sitename}.jpg";
+//            $output = "outputGallery/{$sitename}.jpg";   #save with filename for jpg
+            $output = "outputGallery/gnutec{$sitename}.jpg";  #save with suffix and filename for jpg
         }
 
-//        $width = $tmp_image_width;
-        $width = 1280;
+//        $width = $tmp_image_width;  #save with file width
+        $width = 1280;  #save with static width
         gnt_wrt_optimizer($input, $output, $width);
         $i++;
     } else {
@@ -107,15 +107,15 @@ foreach ($inputGallery_array as $filename) {
         $sitename = str_replace(".jpg", "", $sitename);
         $sitename = str_replace(".png", "", $sitename);
         if (preg_match("/\.(png)$/", $input)) {
-//            $output = "outputGallery/{$sitename}.png";  #save for png with filename
-            $output = "outputGallery/gnutec{$sitename}.png";
+//            $output = "outputGallery/{$sitename}.png";   #save with filename for png
+            $output = "outputGallery/gnutec{$sitename}.png";  #save with suffix and filename for png
         } else {
-//            $output = "outputGallery/{$sitename}.jpg";
-            $output = "outputGallery/gnutec{$sitename}.jpg";
+//            $output = "outputGallery/{$sitename}.jpg";  #save with filename for jpg
+            $output = "outputGallery/gnutec{$sitename}.jpg";  #save with suffix and filename for jpg
         }
 
-//        $height = $tmp_image_height;
-        $height = 700;
+//        $height = $tmp_image_height;  #save with file height
+        $height = 700;  #save with static height
         gnt_hrt_optimizer($input, $output, $height);
         $i++;
     }
