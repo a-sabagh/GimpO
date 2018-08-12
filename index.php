@@ -2,10 +2,10 @@
 
 /**
 * Gimpa : gnu image manipulate Apache
-* Author: gnutec
-* AuthorLink: http://gnutec.ir
+* Author: 
+* AuthorLink: http://.ir
 */
-
+ini_set('memory_limit', '-1');
 function gnt_wrt_optimizer($input, $output, $width) {
     $thumb_width = $width;
     if (preg_match("/\.(png)$/", $input)) {
@@ -30,7 +30,7 @@ function gnt_wrt_optimizer($input, $output, $width) {
     if (preg_match("/\.(png)$/", $input)) {
         $result_jpg = imagepng($image_thumb, $output);
     } else {
-        $result_jpg = imagejpeg($image_thumb, $output);
+        $result_jpg = imagejpeg($image_thumb, $output,75);
     }
 
     if ($result_jpg) {
@@ -63,7 +63,7 @@ function gnt_hrt_optimizer($input, $output, $height) {
     if (preg_match("/\.(png)$/", $input)) {
         $result_jpg = imagepng($image_thumb, $output);
     } else {
-        $result_jpg = imagejpeg($image_thumb, $output);
+        $result_jpg = imagejpeg($image_thumb, $output,75);
     }
     if ($result_jpg) {
         echo "<span style='color: greenyellow;'>thumnail created with jpg format</span><br>";
@@ -91,14 +91,17 @@ foreach ($inputGallery_array as $filename) {
         $sitename = str_replace(".png", "", $sitename);
         if (preg_match("/\.(png)$/", $input)) {
 //            $output = "outputGallery/{$sitename}.png";   #save with filename for png
-            $output = "outputGallery/gnutec{$sitename}.png";  #save with suffix and filename for png
+            $output = "outputGallery/{$sitename}.png";  #save with suffix and filename for png
         } else {
 //            $output = "outputGallery/{$sitename}.jpg";   #save with filename for jpg
-            $output = "outputGallery/gnutec{$sitename}.jpg";  #save with suffix and filename for jpg
+            $output = "outputGallery/{$sitename}.jpg";  #save with suffix and filename for jpg
         }
-
+        $width = 1200;
 //        $width = $tmp_image_width;  #save with file width
-        $width = 1280;  #save with static width
+        if($width > $tmp_image_width){
+            $width = $tmp_image_width;  #save with static width
+        }
+        
         gnt_wrt_optimizer($input, $output, $width);
         $i++;
     } else {
@@ -108,14 +111,16 @@ foreach ($inputGallery_array as $filename) {
         $sitename = str_replace(".png", "", $sitename);
         if (preg_match("/\.(png)$/", $input)) {
 //            $output = "outputGallery/{$sitename}.png";   #save with filename for png
-            $output = "outputGallery/gnutec{$sitename}.png";  #save with suffix and filename for png
+            $output = "outputGallery/{$sitename}.png";  #save with suffix and filename for png
         } else {
 //            $output = "outputGallery/{$sitename}.jpg";  #save with filename for jpg
-            $output = "outputGallery/gnutec{$sitename}.jpg";  #save with suffix and filename for jpg
+            $output = "outputGallery/{$sitename}.jpg";  #save with suffix and filename for jpg
         }
-
 //        $height = $tmp_image_height;  #save with file height
-        $height = 700;  #save with static height
+        $height = 850;  #save with static height
+        if($height > $tmp_image_height){
+            $height = $tmp_image_height;
+        }
         gnt_hrt_optimizer($input, $output, $height);
         $i++;
     }
