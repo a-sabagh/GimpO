@@ -34,9 +34,9 @@ function gnt_wrt_optimizer($input, $output, $width) {
     }
 
     if ($result_jpg) {
-        echo "<span style='color: greenyellow;'>thumnail created with jpg format</span><br>";
+        fwrite(STDOUT,"thumnail created with jpg format\n");
     } else {
-        echo "<span style='color: orangered;'>error with creating jpg thumbnail</span><br>";
+        fwrite(STDOUT,"!error with creating jpg thumbnail\n");
     }
 }
 
@@ -66,9 +66,9 @@ function gnt_hrt_optimizer($input, $output, $height) {
         $result_jpg = imagejpeg($image_thumb, $output,75);
     }
     if ($result_jpg) {
-        echo "<span style='color: greenyellow;'>thumnail created with jpg format</span><br>";
+        fwrite(STDOUT,"thumnail created with jpg format\n");
     } else {
-        echo "<span style='color: orangered;'>error with creating jpg thumbnail</span><br>";
+        fwrite(STDOUT,"!error with creating jpg thumbnail\n");
     }
 }
 
