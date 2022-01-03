@@ -87,8 +87,9 @@ foreach ($inputGallery_array as $filename) {
     if ($tmp_image_ratio > 1) {
         $input = $filename;
         $sitename = str_replace("inputGallery/", "", $filename);
-        $sitename = str_replace(".jpg", "", $sitename);
-        $sitename = str_replace(".png", "", $sitename);
+        $sitename = str_replace(".jpg", "", strtolower($sitename));
+        $sitename = str_replace(".jpeg", "", strtolower($sitename));
+        $sitename = str_replace(".png", "", strtolower($sitename));
         if (preg_match("/\.(png)$/", $input)) {
 //            $output = "outputGallery/{$sitename}.png";   #save with filename for png
             $output = "outputGallery/{$sitename}.png";  #save with suffix and filename for png
@@ -102,13 +103,14 @@ foreach ($inputGallery_array as $filename) {
             $width = $tmp_image_width;  #save with static width
         }
         
-        gnt_wrt_optimizer($input, $output, $width);
+        gnt_wrt_optimizer($filename, $output, $width);
         $i++;
     } else {
         $input = $filename;
         $sitename = str_replace("inputGallery/", "", $filename);
-        $sitename = str_replace(".jpg", "", $sitename);
-        $sitename = str_replace(".png", "", $sitename);
+        $sitename = str_replace(".jpg", "", strtolower($sitename));
+        $sitename = str_replace(".jpeg", "", strtolower($sitename));
+        $sitename = str_replace(".png", "", strtolower($sitename));
         if (preg_match("/\.(png)$/", $input)) {
 //            $output = "outputGallery/{$sitename}.png";   #save with filename for png
             $output = "outputGallery/{$sitename}.png";  #save with suffix and filename for png
@@ -121,7 +123,7 @@ foreach ($inputGallery_array as $filename) {
         if($height > $tmp_image_height){
             $height = $tmp_image_height;
         }
-        gnt_hrt_optimizer($input, $output, $height);
+        gnt_hrt_optimizer($filename, $output, $height);
         $i++;
     }
 }
